@@ -1,0 +1,13 @@
+torch
+diffusers
+transformers
+sentencepiece
+accelerate
+google-genai
+Pillow
+protobuf
+peft
+fastapi
+uvicorn
+python-multipart
+python-dotenv

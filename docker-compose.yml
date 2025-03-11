@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  dsd-api:
+    build:
+      context: ..
+      dockerfile: ./dsd-api/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./outputs:/app/outputs
+      - ./uploads:/app/uploads
+    environment:
+      - MODEL_PATH=/app/models/transformer
+      - LORA_PATH=/app/models/pytorch_lora_weights.safetensors
+      - OUTPUT_DIR=/app/outputs
+      - UPLOAD_DIR=/app/uploads
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
